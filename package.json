@@ -4,7 +4,13 @@
   "description": "Soundcloud client developed using Electron.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . soundcloud --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=\"Soundcloud client developed using Electron\"  --version-string.ProductName=\"SoundCloud Desktop\"",
+    "package-linux": "electron-packager . soundcloud --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/256x256.png --prune=true --out=release-builds",
+    "create-installer-win": "node installers/windows/createinstaller.js",
+    "create-debian-installer": "electron-installer-debian --src release-builds/soundcloud-linux-x64/ --arch amd64 --config config/debian.json",
+    "create-installer-mac": "electron-installer-dmg ./release-builds/SoundCloud \\app-darwin-x64\\ app.app soundcloud-app --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns"
   },
   "author": "Arjun V",
   "license": "MIT",
@@ -12,8 +18,9 @@
     "electron": "^8.1.1"
   },
   "devDependencies": {
+    "electron": "^8.1.1",
     "electron-installer-debian": "^3.0.0",
-    "electron-packager": "^14.2.1",
-    "electron": "^8.1.1"
+    "electron-installer-dmg": "^3.0.0",
+    "electron-packager": "^14.2.1"
   }
 }

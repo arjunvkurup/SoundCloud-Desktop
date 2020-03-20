@@ -1,0 +1,10 @@
+{
+    "dest": "release-builds/installers",
+    "icon": "assets/icons/png/soundcloud.png",
+    "categories": [
+      "Utility"
+    ],
+    "lintianOverrides": [
+      "changelog-file-missing-in-native-package"
+    ]
+}
